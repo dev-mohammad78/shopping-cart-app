@@ -1,0 +1,91 @@
+@import "tailwindcss";
+
+:root {
+  /* ================================
+     Brand Colors
+  ================================= */
+
+  --primary: #ff4d2e;
+  --primary-hover: #e94327;
+  --primary-light: #fff1ed;
+
+  /* ================================
+     Background
+  ================================= */
+
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8fafc;
+  --bg-tertiary: #f1f5f9;
+
+  /* ================================
+     Text
+  ================================= */
+
+  --text-primary: #111827;
+  --text-secondary: #475569;
+  --text-muted: #94a3b8;
+  --text-white: #ffffff;
+
+  /* ================================
+     Border
+  ================================= */
+
+  --border-primary: #e2e8f0;
+  --border-secondary: #f1f5f9;
+  --border-primary-color: #ffb5a5;
+
+  /* ================================
+     Status
+  ================================= */
+
+  --success: #22c55e;
+  --danger: #ef4444;
+  --warning: #f59e0b;
+  --info: #3b82f6;
+
+  /* ================================
+     Rating
+  ================================= */
+
+  --rating: #f59e0b;
+
+  /* ================================
+     Shadows
+  ================================= */
+
+  --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.08);
+  --shadow-md: 0 4px 12px rgba(15, 23, 42, 0.08);
+  --shadow-lg: 0 10px 30px rgba(15, 23, 42, 0.08);
+
+  /* Fonts */
+  --sans: system-ui, "Segoe UI", Roboto, sans-serif;
+  --heading: system-ui, "Segoe UI", Roboto, sans-serif;
+  --mono: ui-monospace, Consolas, monospace;
+
+  font: 18px/145% var(--sans);
+  letter-spacing: 0.18px;
+  color-scheme: light;
+  color: var(--text-primary);
+  background: var(--bg-primary);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  @media (max-width: 1024px) {
+    font-size: 16px;
+  }
+}
+
+#root {
+  max-width: 1000px;
+  margin: 0 auto;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
