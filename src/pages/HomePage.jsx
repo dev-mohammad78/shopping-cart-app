@@ -1,8 +1,10 @@
+import { useProducts } from "../context/ProductContext";
 
 function HomePage() {
-  return (
-    <div>HomePage</div>
-  )
+  const products = useProducts();
+  console.log(products);
+  
+  return <div>HomePage</div>;
 }
 
-export default HomePage
+export default HomePage;
