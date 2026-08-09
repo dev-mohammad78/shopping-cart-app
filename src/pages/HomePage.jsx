@@ -1,14 +1,13 @@
 import { Link } from "react-router-dom";
 
-import { IoIosArrowForward } from "react-icons/io";
-
 import { useProducts } from "../context/ProductContext";
 import { shortenText } from "../helper/helper";
-import { FiShoppingCart } from "react-icons/fi";
+import { IoIosArrowForward } from "react-icons/io";
+
+import Card from "../components/Card";
 
 function HomePage() {
   const products = useProducts();
-  console.log(products);
 
   return (
     <div className="flex justify-between items-center gap-x-40">
@@ -31,40 +30,7 @@ function HomePage() {
         {/* products */}
         <div className="flex justify-between items-center gap-x-4 w-full p-3">
           {products.slice(0, 3).map((product) => (
-            <div
-              key={product.id}
-              className="border border-[var(--border-primary)] rounded-lg shadow-[var(--shadow-md)] bg-[var(--bg-primary)] p-6 w-full"
-            >
-              <Link
-                to="/products/:id"
-                className="flex items-center justify-center"
-              >
-                <img
-                  src={product.image}
-                  alt={product.title}
-                  className="w-[150px] h-[180px] p-1"
-                />
-              </Link>
-
-              <h3 className="mt-5 text-md font-semibold ">
-                {shortenText(product.title)}
-              </h3>
-
-              <p className="mt-3 text-[var(--primary)] font-bold">
-                {product.price} $
-              </p>
-
-              <div className="mt-1 flex justify-between items-center">
-                <div className="flex items-center gap-1 text-sm">
-                  <span>⭐</span>
-                  <p>{product.rating.rate}</p>
-                  <p>({product.rating.count})</p>
-                </div>
-                <span className="border border-[var(--primary)] p-2 rounded-lg cursor-pointer">
-                  <FiShoppingCart className="text-[var(--primary)] font-bold text-lg" />
-                </span>
-              </div>
-            </div>
+            <Card key={product.id} product={product} />
           ))}
         </div>
       </div>
