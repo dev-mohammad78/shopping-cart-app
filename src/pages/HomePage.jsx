@@ -13,8 +13,8 @@ function HomePage() {
   return (
     <div>
       <Search />
-      <div className="flex justify-between items-center gap-x-40">
-        <div className="w-full p-4">
+      <div className="flex flex-col md:flex-row justify-between items-center">
+        <div className="w-full p-4 flex-1">
           {/* header */}
           <div className="flex justify-between items-center p-2">
             <h2 className="text-lg text-[var(--text-primary)] font-semibold">
@@ -34,7 +34,7 @@ function HomePage() {
           </div>
 
           {/* products */}
-          <div className="flex justify-between items-center gap-x-4 w-full p-3">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-x-4 w-full p-3">
             {products.slice(0, 3).map((product) => (
               <Card key={product.id} product={product} />
             ))}

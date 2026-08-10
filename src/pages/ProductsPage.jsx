@@ -6,8 +6,8 @@ import CardSkeleton from "../components/CardSkeleton";
 function ProductsPage() {
   const products = useProducts();
   return (
-    <div className="flex justify-between gap-x-40">
-      <div className="w-full p-4 grid grid-cols-1 md:grid-cols-3 gap-2">
+    <div className="flex flex-col md:flex-row justify-between gap-x-40">
+      <div className="w-full p-1 md:p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
         {!products.length
           ? Array.from({ length: 6 }).map((_, index) => (
               <CardSkeleton key={index} />
