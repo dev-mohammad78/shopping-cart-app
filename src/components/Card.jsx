@@ -8,7 +8,7 @@ function Card({ product }) {
   const { id, image, title, price, rating } = product;
 
   return (
-    <div className="w-[270px] m-3 p-5 flex flex-col justify-end bg-[var(--bg-primary)] border border-[var(--border-primary)] rounded-lg shadow-[var(--shadow-md)]">
+    <div className="w-[270px] mx-3 p-5 flex flex-col justify-end bg-[var(--bg-primary)] border border-[var(--border-primary)] rounded-lg shadow-[var(--shadow-md)]">
       <Link to={`/products/${id}`} className="flex items-center justify-center">
         <img src={image} alt={title} className="w-[150px] h-[180px]" />
       </Link>
