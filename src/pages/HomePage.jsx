@@ -6,15 +6,17 @@ import { IoIosArrowForward } from "react-icons/io";
 
 import Card from "../components/Card";
 import Search from "../components/Search";
+import Categories from "../components/Categories";
 
 function HomePage() {
   const products = useProducts();
+  console.log(products);
 
   return (
     <div>
       <Search />
-      <div className="flex flex-col md:flex-row justify-between items-center">
-        <div className="w-full p-4 flex-1">
+      <div className="w-full flex flex-col md:flex-row justify-between items-start md:mt-5">
+        <div className="w-full md:w-3/4 p-4">
           {/* header */}
           <div className="flex justify-between items-center p-2">
             <h2 className="text-lg text-[var(--text-primary)] font-semibold">
@@ -34,14 +36,14 @@ function HomePage() {
           </div>
 
           {/* products */}
-          <div className="flex flex-col md:flex-row justify-between items-center gap-x-4 w-full p-3">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4 w-full p-3">
             {products.slice(0, 3).map((product) => (
               <Card key={product.id} product={product} />
             ))}
           </div>
         </div>
 
-        <div>Sidebar</div>
+        <Categories />
       </div>
     </div>
   );

@@ -9,6 +9,7 @@ function Card({ product }) {
 
   return (
     <div className="w-full md:w-[270px] mx-1 md:mx-3 p-5 flex md:flex-col justify-start md:justify-end bg-[var(--bg-primary)] border border-[var(--border-primary)] rounded-lg shadow-[var(--shadow-md)]">
+      
       <Link to={`/products/${id}`} className="flex items-center justify-center">
         <img
           src={image}
