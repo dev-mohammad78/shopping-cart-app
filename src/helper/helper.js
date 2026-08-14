@@ -18,4 +18,27 @@ const filterProducts = (products, category) => {
   return filteredProducts;
 };
 
-export { shortenText, searchProducts, filterProducts };
+const sortProducts = (products, sort) => {
+  if (!sort) return products;
+
+  const sortedProducts = [...products];
+
+  switch (sort) {
+    case "price-low":
+      return sortedProducts.sort((a, b) => a.price - b.price);
+
+    case "price-high":
+      return sortedProducts.sort((a, b) => b.price - a.price);
+
+    case "rating-high":
+      return sortedProducts.sort((a, b) => b.rating.rate - a.rating.rate);
+
+    case "rating-low":
+      return sortedProducts.sort((a, b) => a.rating.rate - b.rating.rate);
+
+    default:
+      return products;
+  }
+};
+
+export { shortenText, searchProducts, filterProducts, sortProducts };
