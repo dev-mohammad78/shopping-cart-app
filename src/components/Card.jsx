@@ -4,7 +4,6 @@ import { shortenText } from "../helper/helper";
 import { FiShoppingCart } from "react-icons/fi";
 
 function Card({ product }) {
-  console.log(product);
   const { id, image, title, price, rating } = product;
 
   return (
