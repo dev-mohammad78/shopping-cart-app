@@ -11,12 +11,11 @@ function SearchInput({ setQuery }) {
 
   return (
     <div className="flex justify-between border border-[var(--border-primary)] rounded-lg bg-[var(--bg-primary)] p-2">
-
-      <div className="flex items-center gap-3">
+      <div className="max-w-150 flex items-center gap-3">
         <IoSearchOutline className="text-[var(--text-muted)]" />
 
         <input
-          className="max-w-70 outline-none focus:outline-none focus:ring-0"
+          className="outline-none focus:outline-none focus:ring-0"
           type="text"
           placeholder="Search for products..."
           value={search}

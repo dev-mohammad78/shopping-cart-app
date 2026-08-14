@@ -7,6 +7,7 @@ import Card from "../components/Card";
 import CardSkeleton from "../components/CardSkeleton";
 import Categories from "../components/Categories";
 import ProductSearch from "../components/ProductSearch";
+import { filterProducts, searchProducts } from "../helper/helper";
 
 function ProductsPage() {
   const products = useProducts();
@@ -19,7 +20,10 @@ function ProductsPage() {
   }, [products]);
 
   useEffect(() => {
-    console.log(query);
+    let finalProducts = searchProducts(products, query.search);
+    finalProducts = filterProducts(finalProducts, query.category);
+    console.log(finalProducts)
+    setDisplayed(finalProducts);
   }, [query]);
 
   const searchHandler = () => {

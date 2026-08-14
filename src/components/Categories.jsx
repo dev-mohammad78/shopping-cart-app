@@ -5,15 +5,18 @@ import { LiaDigitalTachographSolid } from "react-icons/lia";
 import { PiDress } from "react-icons/pi";
 
 function Categories({ setQuery }) {
-  
+
   const categoryHandler = (event) => {
     const category = event.target.closest("li");
 
     if (!category) return;
 
-    const categories = category.innerText.toLowerCase();
+    const categoryName = category.innerText.toLowerCase();
 
-    setQuery((query) => ({ ...query, categories }));
+    setQuery((query) => ({
+      ...query,
+      category: categoryName === "all" ? "" : categoryName,
+    }));
   };
 
   return (
