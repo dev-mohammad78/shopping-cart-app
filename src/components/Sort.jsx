@@ -1,5 +1,7 @@
 import { IoSwapVertical } from "react-icons/io5";
 
+import { createQueryObject } from "../helper/helper";
+
 function Sort({ setQuery, sort }) {
   const sortOptions = [
     { label: "Default", value: "" },
@@ -10,10 +12,7 @@ function Sort({ setQuery, sort }) {
   ];
 
   const sortHandler = (value) => {
-    setQuery((query) => ({
-      ...query,
-      sort: value,
-    }));
+    setQuery((query) => createQueryObject(query, { sort: value }));
   };
 
   return (

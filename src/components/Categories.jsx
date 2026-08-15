@@ -4,20 +4,23 @@ import { IoShirtOutline } from "react-icons/io5";
 import { LiaDigitalTachographSolid } from "react-icons/lia";
 import { PiDress } from "react-icons/pi";
 
+import { createQueryObject } from "../helper/helper";
+
 function Categories({ setQuery }) {
 
   const categoryHandler = (event) => {
-    const category = event.target.closest("li");
+  const category = event.target.closest("li");
 
-    if (!category) return;
+  if (!category) return;
 
-    const categoryName = category.innerText.toLowerCase();
+  const categoryName = category.innerText.toLowerCase();
 
-    setQuery((query) => ({
-      ...query,
-      category: categoryName === "all" ? "" : categoryName,
-    }));
-  };
+  setQuery((query) =>
+    createQueryObject(query, {
+      category: categoryName === "all" ? "all" : categoryName,
+    }),
+  );
+};
 
   return (
     <div className="w-full md:w-1/4 md:mt-4 p-2 border border-[var(--border-primary)] rounded-md ">

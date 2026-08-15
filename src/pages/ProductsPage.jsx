@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import { useProducts } from "../context/ProductContext";
 
 import { IoSearchOutline } from "react-icons/io5";
@@ -9,7 +10,12 @@ import ProductSearch from "../components/ProductSearch";
 import Categories from "../components/Categories";
 import Sort from "../components/Sort";
 
-import { filterProducts, searchProducts, sortProducts } from "../helper/helper";
+import {
+  createQueryObject,
+  filterProducts,
+  searchProducts,
+  sortProducts,
+} from "../helper/helper";
 
 function ProductsPage() {
   const products = useProducts();
@@ -17,21 +23,24 @@ function ProductsPage() {
   const [query, setQuery] = useState({});
   const [displayed, setDisplayed] = useState([]);
 
+  const [searchParams, setSearchParams] = useSearchParams();
+
   useEffect(() => {
     setDisplayed(products);
   }, [products]);
 
   useEffect(() => {
+    setSearchParams(query);
+    
     let finalProducts = searchProducts(products, query.search);
     finalProducts = filterProducts(finalProducts, query.category);
     finalProducts = sortProducts(finalProducts, query.sort);
 
-    console.log(finalProducts);
     setDisplayed(finalProducts);
   }, [query]);
 
   const searchHandler = () => {
-    setQuery((query) => ({ ...query, search }));
+    setQuery((query) => createQueryObject(query, { search }));
     setSearch("");
   };
 
