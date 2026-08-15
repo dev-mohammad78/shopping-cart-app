@@ -13,6 +13,7 @@ import Sort from "../components/Sort";
 import {
   createQueryObject,
   filterProducts,
+  getInitialQuery,
   searchProducts,
   sortProducts,
 } from "../helper/helper";
@@ -27,11 +28,12 @@ function ProductsPage() {
 
   useEffect(() => {
     setDisplayed(products);
+    setQuery(getInitialQuery(searchParams));
   }, [products]);
 
   useEffect(() => {
     setSearchParams(query);
-    
+
     let finalProducts = searchProducts(products, query.search);
     finalProducts = filterProducts(finalProducts, query.category);
     finalProducts = sortProducts(finalProducts, query.sort);
@@ -41,7 +43,6 @@ function ProductsPage() {
 
   const searchHandler = () => {
     setQuery((query) => createQueryObject(query, { search }));
-    setSearch("");
   };
 
   return (

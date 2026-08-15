@@ -60,10 +60,25 @@ const createQueryObject = (currentQuery, newQuery) => {
   return { ...currentQuery, ...newQuery };
 };
 
+const getInitialQuery = (searchParams) => {
+  const query = {};
+
+  const search = searchParams.get("search");
+  const category = searchParams.get("category");
+  const sort = searchParams.get("sort");
+
+  if (search) query.search = search;
+  if (category) query.category = category;
+  if (sort) query.sort = sort;
+
+  return query;
+};
+
 export {
   shortenText,
   searchProducts,
   filterProducts,
   sortProducts,
   createQueryObject,
+  getInitialQuery,
 };
