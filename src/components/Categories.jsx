@@ -6,21 +6,20 @@ import { PiDress } from "react-icons/pi";
 
 import { createQueryObject } from "../helper/helper";
 
-function Categories({ setQuery }) {
-
+function Categories({ setQuery, category }) {
   const categoryHandler = (event) => {
-  const category = event.target.closest("li");
+    const category = event.target.closest("li");
 
-  if (!category) return;
+    if (!category) return;
 
-  const categoryName = category.innerText.toLowerCase();
+    const categoryName = category.innerText.toLowerCase();
 
-  setQuery((query) =>
-    createQueryObject(query, {
-      category: categoryName === "all" ? "all" : categoryName,
-    }),
-  );
-};
+    setQuery((query) =>
+      createQueryObject(query, {
+        category: categoryName === "all" ? "all" : categoryName,
+      }),
+    );
+  };
 
   return (
     <div className="w-full md:w-1/4 md:mt-4 p-2 border border-[var(--border-primary)] rounded-md ">
@@ -32,20 +31,42 @@ function Categories({ setQuery }) {
         onClick={categoryHandler}
         className="px-4 py-2 flex flex-col gap-y-3 text-[var(--text-primary)]"
       >
-        <li className="cursor-pointer block">All</li>
-        <li className="flex block cursor-pointer items-center gap-x-2">
+        <li
+          className={`cursor-pointer block ${
+            !category || category === "all" ? "active" : ""
+          }`}
+        >
+          All
+        </li>
+        <li
+          className={`flex cursor-pointer items-center gap-x-2 ${
+            category === "electronics" ? "active" : ""
+          }`}
+        >
           <LiaDigitalTachographSolid />
           Electronics
         </li>
-        <li className="flex block cursor-pointer items-center gap-x-2">
+        <li
+          className={`flex cursor-pointer items-center gap-x-2 ${
+            category === "jewelery" ? "active" : ""
+          }`}
+        >
           <BsGem />
           Jewelery
         </li>
-        <li className="flex block cursor-pointer items-center gap-x-2">
+        <li
+          className={`flex cursor-pointer items-center gap-x-2 ${
+            category === "men's clothing" ? "active" : ""
+          }`}
+        >
           <IoShirtOutline />
           Men's clothing
         </li>
-        <li className="flex block cursor-pointer items-center gap-x-2">
+        <li
+          className={`flex cursor-pointer items-center gap-x-2 ${
+            category === "women's clothing" ? "active" : ""
+          }`}
+        >
           <PiDress />
           Women's clothing
         </li>

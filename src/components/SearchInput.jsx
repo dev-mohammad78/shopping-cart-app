@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { IoSearchOutline } from "react-icons/io5";
 
+import { createQueryObject } from "../helper/helper";
+
 function SearchInput({ setQuery }) {
   const [search, setSearch] = useState("");
 
   const searchHandler = () => {
-    setQuery((query) => ({ ...query, search }));
-    setSearch("");
+    setQuery((query) => createQueryObject(query, { search }));
   };
 
   return (

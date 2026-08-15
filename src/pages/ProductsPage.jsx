@@ -11,7 +11,6 @@ import Categories from "../components/Categories";
 import Sort from "../components/Sort";
 
 import {
-  createQueryObject,
   filterProducts,
   getInitialQuery,
   searchProducts,
@@ -41,10 +40,6 @@ function ProductsPage() {
     setDisplayed(finalProducts);
   }, [query]);
 
-  const searchHandler = () => {
-    setQuery((query) => createQueryObject(query, { search }));
-  };
-
   return (
     <div className="w-full m-auto">
       {/* Search Input */}
@@ -67,7 +62,7 @@ function ProductsPage() {
               ))}
         </div>
 
-        <Categories setQuery={setQuery} />
+        <Categories setQuery={setQuery} category={query.category} />
       </div>
     </div>
   );
