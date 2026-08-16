@@ -2,13 +2,20 @@ import { Link } from "react-router-dom";
 
 import { shortenText } from "../helper/helper";
 import { FiShoppingCart } from "react-icons/fi";
+import { useCart } from "../context/CartContext";
 
 function Card({ product }) {
   const { id, image, title, price, rating } = product;
 
+  const { state, dispatch } = useCart();
+
+
+  const clickHandler = () => {
+    dispatch({ type: "add", payload: product });
+  };
+
   return (
     <div className="w-full md:w-[270px] mx-1 md:mx-3 p-5 flex md:flex-col justify-start md:justify-end bg-[var(--bg-primary)] border border-[var(--border-primary)] rounded-lg shadow-[var(--shadow-md)]">
-      
       <Link to={`/products/${id}`} className="flex items-center justify-center">
         <img
           src={image}
@@ -30,9 +37,12 @@ function Card({ product }) {
               <p>{rating.rate}</p>
               <p>({rating.count})</p>
             </div>
-            <div className="border border-[var(--primary)] p-2 rounded-lg cursor-pointer">
+            <button
+              onClick={clickHandler}
+              className="border border-[var(--primary)] p-2 rounded-lg cursor-pointer"
+            >
               <FiShoppingCart className="text-[var(--primary)] font-bold text-lg" />
-            </div>
+            </button>
           </div>
         </div>
       </div>
