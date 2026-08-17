@@ -11,7 +11,6 @@ const initialState = {
 };
 
 const reducer = (state, action) => {
-  console.log(action);
   switch (action.type) {
     case "ADD_TO_CART": {
       if (
@@ -25,8 +24,55 @@ const reducer = (state, action) => {
         checkout: false,
       };
     }
+    case "REMOVE_FROM_CART": {
+      const newSelectedItems = state.selectedItems.filter(
+        (item) => item.id !== action.payload.id,
+      );
+      return {
+        ...state,
+        selectedItems: [...newSelectedItems],
+        ...sumProducts(newSelectedItems),
+      };
+    }
+    case "INCREASE_QUANTITY": {
+      const selectedItems = state.selectedItems.map((product) =>
+        product.id === action.payload.id
+          ? { ...product, quantity: product.quantity + 1 }
+          : product,
+      );
+
+      return {
+        ...state,
+        selectedItems,
+        ...sumProducts(selectedItems),
+      };
+    }
+    case "DECREASE_QUANTITY": {
+      const selectedItems = state.selectedItems.map((product) =>
+        product.id === action.payload.id
+          ? {
+              ...product,
+              quantity: Math.max(product.quantity - 1, 1),
+            }
+          : product,
+      );
+
+      return {
+        ...state,
+        selectedItems,
+        ...sumProducts(selectedItems),
+      };
+    }
+    case "CHECKOUT":
+      return {
+        selectedItems: [],
+        counterItems: 0,
+        total: 0,
+        checkout: true,
+      };
+
     default:
-      throw new Error(`Unknown action: ${action.type}`);
+      throw new Error("Invalid action");
   }
 };
 
