@@ -113,3 +113,10 @@ body {
   align-items: center;
   justify-content: center;
 }
+
+
+.nav{
+   border-bottom: 2px solid var(--border-primary-color);
+   padding: 8px;
+}
+
