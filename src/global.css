@@ -90,7 +90,6 @@ body {
   margin: 0;
 }
 
-
 @utility scrollbar-hide {
   scrollbar-width: none;
 
@@ -99,9 +98,18 @@ body {
   }
 }
 
-.active{
-   background-color: var(--primary);
-   color: var(--bg-primary);
-   border-radius: 10px;
-   padding: 7px;
+.active {
+  background-color: var(--primary);
+  color: var(--bg-primary);
+  border-radius: 10px;
+  padding: 7px;
+}
+
+.btn {
+  width: 35px;
+  height: 35px;
+  line-height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

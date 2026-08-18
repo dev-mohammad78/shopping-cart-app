@@ -1,17 +1,18 @@
 import { Link } from "react-router-dom";
 
-import { shortenText } from "../helper/helper";
-import { FiShoppingCart } from "react-icons/fi";
+import { productsQuantity, shortenText } from "../helper/helper";
+import { FiShoppingCart, FiTrash } from "react-icons/fi";
 import { useCart } from "../context/CartContext";
 
 function Card({ product }) {
   const { id, image, title, price, rating } = product;
 
   const { state, dispatch } = useCart();
-  console.log(state);
 
-  const clickHandler = () => {
-    dispatch({ type: "ADD_TO_CART", payload: product });
+  const quantity = productsQuantity(state, id);
+
+  const clickHandler = (type) => {
+    dispatch({ type, payload: product });
   };
 
   return (
@@ -37,12 +38,46 @@ function Card({ product }) {
               <p>{rating.rate}</p>
               <p>({rating.count})</p>
             </div>
-            <button
-              onClick={clickHandler}
-              className="border border-[var(--primary)] p-2 rounded-lg cursor-pointer"
-            >
-              <FiShoppingCart className="text-[var(--primary)] font-bold text-lg" />
-            </button>
+            <div className="flex items-center ">
+              {quantity === 1 && (
+                <button
+                  onClick={() => clickHandler("REMOVE_FROM_CART")}
+                  className="btn border border-[var(--primary)] p-2 rounded-lg cursor-pointer"
+                >
+                  <FiTrash className="text-[var(--primary)] font-bold text-lg" />
+                </button>
+              )}
+
+              {quantity > 1 && (
+                <button
+                  onClick={() => clickHandler("DECREASE_QUANTITY")}
+                  className="btn border border-[var(--primary)] text-[var(--primary)] font-bold p-2 rounded-lg cursor-pointer"
+                >
+                  -
+                </button>
+              )}
+              {!!quantity && (
+                <span className="mx-4 md:mx-2 text-[var(--primary)] font-bold">
+                  {quantity}
+                </span>
+              )}
+
+              {quantity === 0 ? (
+                <button
+                  onClick={() => clickHandler("ADD_TO_CART")}
+                  className="btn border border-[var(--primary)] p-2 rounded-lg cursor-pointer"
+                >
+                  <FiShoppingCart className="text-[var(--primary)] font-bold text-lg" />
+                </button>
+              ) : (
+                <button
+                  onClick={() => clickHandler("INCREASE_QUANTITY")}
+                  className="btn border border-[var(--primary)] text-[var(--primary)] font-bold p-2 rounded-lg cursor-pointer"
+                >
+                  +
+                </button>
+              )}
+            </div>
           </div>
         </div>
       </div>
