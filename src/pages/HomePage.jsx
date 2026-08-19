@@ -1,22 +1,28 @@
 import { Link } from "react-router-dom";
-
 import { useProducts } from "../context/ProductContext";
-import { shortenText } from "../helper/helper";
+
 import { IoIosArrowForward } from "react-icons/io";
 
+import { getTopRatedProduct, shortenText } from "../helper/helper";
 import Card from "../components/Card";
 import Search from "../components/Search";
 import Categories from "../components/Categories";
+import PromoBanner from "../components/PromoBanner";
 
 function HomePage() {
   const products = useProducts();
-  console.log(products);
+  const featuredProducts = products.slice(0, 3);
+  
+
+  const featuredIds = featuredProducts.map((product) => product.id);
+
+  const promotionalProduct = getTopRatedProduct(products, featuredIds);
 
   return (
     <div>
       <Search />
-      <div className="w-full flex flex-col md:flex-row justify-between items-start md:mt-5">
-        <div className="w-full md:w-3/4 p-4">
+      <div className="w-full flex flex-col md:flex-row  justify-between items-start md:mt-5">
+        <div className="w-full md:w-3/4 p-4 order-2 lg:order-1">
           {/* header */}
           <div className="flex justify-between items-center p-2">
             <h2 className="text-lg text-[var(--text-primary)] font-semibold">
@@ -42,8 +48,7 @@ function HomePage() {
             ))}
           </div>
         </div>
-
-        <Categories />
+        <PromoBanner product={promotionalProduct} />
       </div>
     </div>
   );

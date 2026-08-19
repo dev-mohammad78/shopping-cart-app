@@ -96,6 +96,18 @@ const productsQuantity = (state, id) => {
   }
 };
 
+const getTopRatedProduct = (products, excludedIds = []) => {
+  const availableProducts = products.filter(
+    (product) => !excludedIds.includes(product.id),
+  );
+
+  if (!availableProducts.length) return null;
+
+  return availableProducts.reduce((best, product) => {
+    return product.rating.rate > best.rating.rate ? product : best;
+  });
+};
+
 export {
   shortenText,
   searchProducts,
@@ -105,4 +117,5 @@ export {
   getInitialQuery,
   sumProducts,
   productsQuantity,
+  getTopRatedProduct,
 };
