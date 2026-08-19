@@ -7,7 +7,7 @@ function Search({ setQuery }) {
         <h2 className="text-4xl font-semibold">
           Discover Your <br />
           Perfect
-          <span className="text-[var(--primary)]">Product</span>
+          <span className="text-[var(--primary)] ml-2">Product</span>
         </h2>
 
         <p className="my-2 text-[var(--text-muted)]">

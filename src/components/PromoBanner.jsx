@@ -56,7 +56,7 @@ const PromoBanner = ({ product }) => {
 
         {/* Button */}
         <Link to={`/products/${product.id}`}>
-          <button className="mt-7 rounded-lg bg-[var(--primary)] px-2 py-2.5 text-sm font-semibold text-[var(--text-white)] transition hover:bg-[var(--primary-hover)]">
+          <button className="mt-7 rounded-lg bg-[var(--bg-primary)] px-4 py-2.5 text-sm font-semibold text-[var(--primary)] cursor-pointer border border-[var(--primary)]">
             <IoIosArrowForward />
           </button>
         </Link>
