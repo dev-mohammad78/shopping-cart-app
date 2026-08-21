@@ -7,6 +7,7 @@ import CheckoutPage from "./pages/CheckoutPage";
 import PageNotFound from "./pages/404";
 import ProductProvider from "./context/ProductContext";
 import CartProvider from "./context/CartContext";
+import AboutUsPage from "./pages/AboutPage";
 import Layout from "./layout/Layout";
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
             <Route path="/products" element={<ProductsPage />} />
             <Route path="/products/:id" element={<DetailsPage />} />
             <Route path="/checkout" element={<CheckoutPage />} />
+            <Route path="/about" element={<AboutUsPage />} />
             <Route path="/*" element={<PageNotFound />} />
           </Routes>
         </Layout>

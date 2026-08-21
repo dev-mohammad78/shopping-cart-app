@@ -35,7 +35,7 @@ function Layout({ children }) {
           </NavLink>
 
           <NavLink
-            to="/checkout"
+            to="/about"
             className={({ isActive }) => (isActive ? "nav" : null)}
           >
             About
