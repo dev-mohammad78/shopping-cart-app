@@ -1,4 +1,4 @@
-import { FiArrowRight, FiClock, FiStar } from "react-icons/fi";
+import { FiClock } from "react-icons/fi";
 import { shortenText } from "../helper/helper";
 import { IoIosArrowForward } from "react-icons/io";
 import { Link } from "react-router-dom";

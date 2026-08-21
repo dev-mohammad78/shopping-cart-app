@@ -1,4 +1,3 @@
-import { FiShoppingBag, FiTruck, FiShield, FiHeart } from "react-icons/fi";
 import { Link } from "react-router-dom";
 
 function AboutUsPage() {
@@ -57,18 +56,6 @@ function AboutUsPage() {
   );
 }
 
-function Feature({ icon, title, text }) {
-  return (
-    <div className="bg-[var(--bg-secondary)] border border-[var(--border-primary)] rounded-xl p-5 hover:shadow-[var(--shadow-sm)] transition">
-      <div className="w-11 h-11 flex items-center justify-center rounded-lg bg-[var(--bg-tertiary)] text-[var(--primary)] text-xl">
-        {icon}
-      </div>
 
-      <h3 className="mt-4 font-semibold text-[var(--text-primary)]">{title}</h3>
-
-      <p className="mt-2 text-sm text-[var(--text-muted)] leading-6">{text}</p>
-    </div>
-  );
-}
 
 export default AboutUsPage;

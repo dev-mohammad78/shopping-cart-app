@@ -7,6 +7,7 @@ import { getTopRatedProduct } from "../helper/helper";
 import Card from "../components/Card";
 import Search from "../components/Search";
 import PromoBanner from "../components/PromoBanner";
+import Loader from "../components/Loader";
 
 function HomePage() {
   const products = useProducts();
@@ -19,35 +20,39 @@ function HomePage() {
   return (
     <div>
       <Search redirectToProducts />
-      <div className="w-full flex flex-col md:flex-row  justify-between items-start md:mt-5">
-        <div className="w-full md:w-3/4 p-4 order-2 lg:order-1">
-          {/* header */}
-          <div className="flex justify-between items-center p-2">
-            <h2 className="text-lg text-[var(--text-primary)] font-semibold">
-              Featured Products
-            </h2>
-            <div className="flex items-center">
-              <Link
-                to="/products"
-                className="text-sm text-[var(--text-primary)]"
-              >
-                View All
-              </Link>
-              <span className="text-sm text-[var(--text-primary)] ml-1">
-                <IoIosArrowForward />
-              </span>
+      {!products.length ? (
+        <Loader />
+      ) : (
+        <div className="w-full flex flex-col md:flex-row  justify-between items-start md:mt-5">
+          <div className="w-full md:w-3/4 p-4 order-2 lg:order-1">
+            {/* header */}
+            <div className="flex justify-between items-center p-2">
+              <h2 className="text-lg text-[var(--text-primary)] font-semibold">
+                Featured Products
+              </h2>
+              <div className="flex items-center">
+                <Link
+                  to="/products"
+                  className="text-sm text-[var(--text-primary)]"
+                >
+                  View All
+                </Link>
+                <span className="text-sm text-[var(--text-primary)] ml-1">
+                  <IoIosArrowForward />
+                </span>
+              </div>
+            </div>
+
+            {/* products */}
+            <div className="flex flex-col md:flex-row justify-between items-center gap-4 w-full p-3">
+              {products.slice(0, 3).map((product) => (
+                <Card key={product.id} product={product} />
+              ))}
             </div>
           </div>
-
-          {/* products */}
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4 w-full p-3">
-            {products.slice(0, 3).map((product) => (
-              <Card key={product.id} product={product} />
-            ))}
-          </div>
+          <PromoBanner product={promotionalProduct} />
         </div>
-        <PromoBanner product={promotionalProduct} />
-      </div>
+      )}
     </div>
   );
 }

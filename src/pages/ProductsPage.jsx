@@ -5,7 +5,6 @@ import { useProducts } from "../context/ProductContext";
 import { IoSearchOutline } from "react-icons/io5";
 
 import Card from "../components/Card";
-import CardSkeleton from "../components/CardSkeleton";
 import ProductSearch from "../components/ProductSearch";
 import Categories from "../components/Categories";
 import Sort from "../components/Sort";

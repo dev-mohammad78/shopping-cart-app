@@ -2,9 +2,7 @@ import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useSingleProduct } from "../context/ProductContext";
 import { useCart } from "../context/CartContext";
-
-import { FiShoppingCart } from "react-icons/fi";
-import { IoIosArrowBack } from "react-icons/io";
+import Loader from "../components/Loader";
 
 function DetailsPage() {
   const [showDescription, setShowDescription] = useState(false);
@@ -12,10 +10,9 @@ function DetailsPage() {
   const product = useSingleProduct(+id);
   const navigate = useNavigate();
   const { state, dispatch } = useCart();
+  if (!product) return <Loader />;
 
   const isInCart = state.selectedItems.some((item) => item.id === product.id);
-
-  if (!product) return <p>Loading...</p>;
 
   const { image, title, description, price, rating } = product;
 
@@ -50,7 +47,7 @@ function DetailsPage() {
           <p>⭐ {rating.rate} |</p>
           <p>({rating.count}) left of this product</p>
         </span>
-        
+
         <p className="my-5 text-[var(--primary)] text-3xl font-bold">
           {price} $
         </p>
