@@ -21,7 +21,7 @@ function Card({ product }) {
         <img
           src={image}
           alt={title}
-          className="w-[80px] md:w-[150px] md:h-[180px]"
+          className="w-[80px] md:w-[150px] object-contain md:h-[180px]"
         />
       </Link>
 
