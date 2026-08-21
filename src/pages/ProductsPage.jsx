@@ -26,7 +26,6 @@ function ProductsPage() {
   const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
-    setDisplayed(products);
     setQuery(getInitialQuery(searchParams));
   }, [products]);
 
@@ -53,13 +52,37 @@ function ProductsPage() {
       {/* products */}
       <div className="w-full flex flex-col md:flex-row justify-between items-start">
         <div className="w-full md:w-3/4 p-1 md:p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
-          {!displayed.length
-            ? Array.from({ length: 6 }).map((_, index) => (
-                <CardSkeleton key={index} />
-              ))
-            : displayed.map((product) => (
-                <Card key={product.id} product={product} />
-              ))}
+          {displayed.length ? (
+            displayed.map((product) => (
+              <Card key={product.id} product={product} />
+            ))
+          ) : (
+            <div className="col-span-full min-h-100 flex flex-col items-center justify-center text-center px-4">
+              {/* Icon */}
+              <div className="w-20 h-20 flex items-center justify-center rounded-full bg-[var(--bg-tertiary)] mb-5">
+                <IoSearchOutline className="text-4xl text-[var(--primary)]" />
+              </div>
+
+              {/* Title */}
+              <h2 className="text-2xl font-semibold text-[var(--text-primary)]">
+                No Products Found
+              </h2>
+
+              {/* Description */}
+              <p className="max-w-md mt-2 text-[var(--text-muted)]">
+                We couldn't find any products matching your search. Try
+                searching for something else.
+              </p>
+
+              {/* Button */}
+              <button
+                onClick={() => setQuery({})}
+                className="mt-6 px-5 py-2.5 rounded-lg bg-[var(--primary)] text-[var(--text-white)] cursor-pointer hover:opacity-90 transition"
+              >
+                View All Products
+              </button>
+            </div>
+          )}
         </div>
 
         <Categories setQuery={setQuery} category={query.category} />

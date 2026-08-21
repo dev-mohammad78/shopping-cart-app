@@ -1,12 +1,22 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import { IoSearchOutline } from "react-icons/io5";
 
 import { createQueryObject } from "../helper/helper";
 
-function SearchInput({ setQuery }) {
+function SearchInput({ setQuery, redirectToProducts = false }) {
   const [search, setSearch] = useState("");
+  const navigate = useNavigate();
 
   const searchHandler = () => {
+    if (!search) return;
+
+    if (redirectToProducts) {
+      navigate(`/products?search=${encodeURIComponent(search)}`);
+      return;
+    }
+
     setQuery((query) => createQueryObject(query, { search }));
   };
 

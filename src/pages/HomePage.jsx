@@ -3,16 +3,14 @@ import { useProducts } from "../context/ProductContext";
 
 import { IoIosArrowForward } from "react-icons/io";
 
-import { getTopRatedProduct, shortenText } from "../helper/helper";
+import { getTopRatedProduct } from "../helper/helper";
 import Card from "../components/Card";
 import Search from "../components/Search";
-import Categories from "../components/Categories";
 import PromoBanner from "../components/PromoBanner";
 
 function HomePage() {
   const products = useProducts();
   const featuredProducts = products.slice(0, 3);
-  
 
   const featuredIds = featuredProducts.map((product) => product.id);
 
@@ -20,7 +18,7 @@ function HomePage() {
 
   return (
     <div>
-      <Search />
+      <Search redirectToProducts />
       <div className="w-full flex flex-col md:flex-row  justify-between items-start md:mt-5">
         <div className="w-full md:w-3/4 p-4 order-2 lg:order-1">
           {/* header */}

@@ -1,6 +1,6 @@
 import SearchInput from "./SearchInput";
 
-function Search({ setQuery }) {
+function Search({ setQuery, redirectToProducts = false }) {
   return (
     <div className="w-full flex justify-between items-center bg-[var(--bg-secondary)] px-8 py-3">
       <div className="md:ml-4">
@@ -15,7 +15,10 @@ function Search({ setQuery }) {
         </p>
 
         <div className="mt-6">
-          <SearchInput setQuery={setQuery} />
+          <SearchInput
+            setQuery={setQuery}
+            redirectToProducts={redirectToProducts}
+          />
         </div>
       </div>
 
